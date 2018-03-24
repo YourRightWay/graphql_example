@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+jspm_packages
+bower_components
+
+# testing
+/coverage
+
+/public
+/errorShots
+
+# IDE files
+.idea
+
+.DS_Store
+
+# Logs
+*.log
+
+.DS_Store
