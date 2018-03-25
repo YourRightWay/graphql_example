@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 3 versions", "safari >= 7", "not ie <= 10"]
+      },
+      "debug": true
+    }],
+    "es2017",
+    "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["react-remove-properties", { "properties": ["data-test"] }]
+      ]
+    }
+  }
+}
