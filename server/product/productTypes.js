@@ -12,10 +12,10 @@ const ProductType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLInt },
     url: { type: GraphQLString },
-    cover2: { type: GraphQLString },
-    currency_label: { type: GraphQLString },
-    retail_price: { type: GraphQLInt },
-    wholesale_price: { type: GraphQLInt },
+    cover: { type: GraphQLString },
+    currencyLabel: { type: GraphQLString },
+    retailPrice: { type: GraphQLInt },
+    wholesalePrice: { type: GraphQLInt },
   }
 });
 
@@ -25,10 +25,10 @@ const ProductInputType = new GraphQLInputObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     url: {type: new GraphQLNonNull(GraphQLString)},
-    cover2: {type: new GraphQLNonNull(GraphQLString)},
-    currency_label: {type: new GraphQLNonNull(GraphQLString)},
-    retail_price: {type: new GraphQLNonNull(GraphQLInt)},
-    wholesale_price: {type: new GraphQLNonNull(GraphQLInt)},
+    cover: {type: new GraphQLNonNull(GraphQLString)},
+    currencyLabel: {type: new GraphQLNonNull(GraphQLString)},
+    retailPrice: {type: new GraphQLNonNull(GraphQLInt)},
+    wholesalePrice: {type: new GraphQLNonNull(GraphQLInt)},
   }),
 });
 
@@ -38,10 +38,10 @@ const ProductUpdateInputType = new GraphQLInputObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     url: {type: GraphQLString},
-    cover2: {type: GraphQLString},
-    currency_label: {type: GraphQLString},
-    retail_price: {type: GraphQLInt},
-    wholesale_price: {type: GraphQLInt},
+    cover: {type: GraphQLString},
+    currencyLabel: {type: GraphQLString},
+    retailPrice: {type: GraphQLInt},
+    wholesalePrice: {type: GraphQLInt},
   }),
 });
 
