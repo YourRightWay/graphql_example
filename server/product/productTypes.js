@@ -10,7 +10,6 @@ const ProductType = new GraphQLObjectType({
   name: 'ProductType',
   description: 'Product type fields',
   fields: {
-    id: { type: GraphQLInt },
     url: { type: GraphQLString },
     cover: { type: GraphQLString },
     currencyLabel: { type: GraphQLString },
@@ -23,7 +22,6 @@ const ProductInputType = new GraphQLInputObjectType({
   name: 'ProductInputType',
   description: 'Product payload definition',
   fields: () => ({
-    id: { type: new GraphQLNonNull(GraphQLInt) },
     url: {type: new GraphQLNonNull(GraphQLString)},
     cover: {type: new GraphQLNonNull(GraphQLString)},
     currencyLabel: {type: new GraphQLNonNull(GraphQLString)},
@@ -36,7 +34,7 @@ const ProductUpdateInputType = new GraphQLInputObjectType({
   name: 'ProductUpdateInputType',
   description: 'Product payload definition',
   fields: () => ({
-    id: { type: new GraphQLNonNull(GraphQLInt) },
+    id: { type: new GraphQLNonNull(GraphQLString) },
     url: {type: GraphQLString},
     cover: {type: GraphQLString},
     currencyLabel: {type: GraphQLString},

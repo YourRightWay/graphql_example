@@ -6,17 +6,9 @@
       },
       "debug": true
     }],
-    "es2017",
-    "react"
+    "es2017"
   ],
   "plugins": [
     "transform-object-rest-spread"
-  ],
-  "env": {
-    "production": {
-      "plugins": [
-        ["react-remove-properties", { "properties": ["data-test"] }]
-      ]
-    }
-  }
+  ]
 }

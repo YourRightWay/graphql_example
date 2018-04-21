@@ -1,6 +1,6 @@
 import {
   GraphQLList,
-  GraphQLInt,
+  GraphQLString,
   GraphQLNonNull
 } from 'graphql';
 
@@ -10,36 +10,25 @@ import {
   ProductUpdateInputType
 } from './productTypes';
 
-import data from '../data/data.json';
-
 const ProductQuery = {
-  getProduct: {
-    type: ProductType,
-    args: {
-      id: {
-        type: GraphQLInt
-      }
-    },
-    resolve: (parentValue, { id }) => {
-      return data.products.find(p => p.id === id)
-    }
-  },
   getProductById: {
     type: ProductType,
     args: {
       id: {
-        type: new GraphQLNonNull(GraphQLInt)
+        type: new GraphQLNonNull(GraphQLString)
       }
     },
-    resolve: (parentValue, { id }) => {
-      return data.products.find(p => p.id === id)
+    resolve: async (parentValue, { id: _id }, { Product }) => {
+      return await Product.findById({ _id })
     }
   },
   products: {
     type: new GraphQLList(ProductType),
-    resolve: () => data.products
+    resolve: async (parentValue, args, { Product }) => {
+      return await Product.find();
+    }
   }
-}
+};
 
 const ProductMutation = {
   addProduct: {
@@ -49,33 +38,44 @@ const ProductMutation = {
         type: new GraphQLNonNull(ProductInputType),
       }
     },
-    resolve: (parentValue, args ) => {
-      return args.input;
+    resolve: async (parentValue, { input }, { Product }) => {
+      return await Product.create({
+        ...input,
+      });
     }
   },
   updateProduct: {
-    type: ProductType,
+    type: new GraphQLList(ProductType),
     args: {
       input : {
         type: new GraphQLNonNull(ProductUpdateInputType),
       }
     },
-    resolve: (parentValue, args) => {
-      const currentIndex = data.products.findIndex(p => p.id === args.input.id);
-      return { ...data.products[currentIndex], ...args.input };
+    resolve: async (parentValue, { input }, { Product }) => {
+      const { id: _id, url, cover, retailPrice, currencyLabel, wholesalePrice } = input;
+      await Product.findOneAndUpdate(
+        { _id },
+        {
+          $set: {
+            url, cover, retailPrice, currencyLabel, wholesalePrice
+          }
+        }
+      );
+
+      return await Product.find();
     }
   },
   deleteProduct: {
-    type: ProductType,
+    type: new GraphQLList(ProductType),
     args: {
-      id: {type: new GraphQLNonNull(GraphQLInt)},
+      id: { type: new GraphQLNonNull(GraphQLString) },
     },
-    resolve: (parentValue, { id }) => {
-      const currentIndex = data.products.findIndex(p => p.id === id);
-      return { ...data.products[currentIndex], id };
+    resolve: async (parentValue, { id: _id }, { Product }) => {
+      await Product.remove({ _id });
+      return await Product.find();
     }
   }
-}
+};
 
 export {
   ProductQuery,
