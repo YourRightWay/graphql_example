@@ -2,7 +2,7 @@ import {
   GraphQLSchema,
   GraphQLObjectType,
 } from 'graphql';
-import { ProductQuery, ProductMutation } from './resolvers';
+import { ProductQuery, ProductMutation } from './resolver';
 import { GraphQLSkipDirective } from './directive';
 
 const rootQuery = new GraphQLObjectType({
