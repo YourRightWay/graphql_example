@@ -1,0 +1,1 @@
+import mongoose, { Schema } from 'mongoose';const commentSchema = Schema({  author: String,  title: String,  text: String,  productId: String});export default mongoose.model('Comment', commentSchema);

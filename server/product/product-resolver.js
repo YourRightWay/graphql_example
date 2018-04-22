@@ -8,7 +8,7 @@ import {
   ProductType,
   ProductInputType,
   ProductUpdateInputType
-} from './productTypes';
+} from './product-types';
 
 const ProductQuery = {
   getProductById: {
