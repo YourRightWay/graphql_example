@@ -18,8 +18,8 @@ const ProductQuery = {
         type: new GraphQLNonNull(GraphQLString)
       }
     },
-    resolve: async (parentValue, { id: _id }, { Product }) => {
-      return await Product.findById({ _id })
+    resolve: (parentValue, { id: _id }, { productByIdLoader }) => {
+      return productByIdLoader.load(_id);
     }
   },
   products: {

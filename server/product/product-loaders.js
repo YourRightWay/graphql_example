@@ -1,0 +1,1 @@
+import DataLoader from'dataloader';import keyBy from 'lodash.keyby';export const productByIdLoader = (Product) => new DataLoader(keys => {  return Product    .find({ _id: { $in: keys }})    .then(products => {      const bedsById = keyBy(products, "_id");      return keys.map(productId => bedsById[productId]);    });});
