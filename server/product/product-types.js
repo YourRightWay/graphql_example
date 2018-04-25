@@ -15,17 +15,12 @@ const ProductType = new GraphQLObjectType({
   name: 'ProductType',
   description: 'Product type fields',
   fields: () => ({
-    url: {
-      type: GraphQLString,
-      description: 'Product link',
-    },
-    cover: {
-      type: GraphQLString,
-      description: 'Product image',
-    },
+    url: { type: GraphQLString },
+    cover: { type: GraphQLString },
     currencyLabel: { type: GraphQLString },
+    description: { type: GraphQLString },
+    name: { type: GraphQLString },
     retailPrice: { type: GraphQLInt },
-    wholesalePrice: { type: GraphQLInt },
     favoriteProducts: {
       type: new GraphQLList(ProductType),
       resolve: async (parentValue, args, { Product }) => {
@@ -50,8 +45,9 @@ const ProductInputType = new GraphQLInputObjectType({
     url: {type: new GraphQLNonNull(GraphQLString)},
     cover: {type: new GraphQLNonNull(GraphQLString)},
     currencyLabel: {type: new GraphQLNonNull(GraphQLString)},
+    description: {type: new GraphQLNonNull(GraphQLString)},
+    name: {type: new GraphQLNonNull(GraphQLString)},
     retailPrice: {type: new GraphQLNonNull(GraphQLInt)},
-    wholesalePrice: {type: new GraphQLNonNull(GraphQLInt)},
   }),
 });
 
@@ -63,8 +59,9 @@ const ProductUpdateInputType = new GraphQLInputObjectType({
     url: {type: GraphQLString},
     cover: {type: GraphQLString},
     currencyLabel: {type: GraphQLString},
+    description: {type: GraphQLString},
+    name: {type: GraphQLString},
     retailPrice: {type: GraphQLInt},
-    wholesalePrice: {type: GraphQLInt},
   }),
 });
 

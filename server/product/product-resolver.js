@@ -18,8 +18,8 @@ const ProductQuery = {
         type: new GraphQLNonNull(GraphQLString)
       }
     },
-    resolve: (parentValue, { id: _id }, { productByIdLoader }) => {
-      return productByIdLoader.load(_id);
+    resolve: async (parentValue, { id: _id }, { Product }) => {
+      return await Product.findById({ _id })
     }
   },
   products: {
@@ -52,12 +52,12 @@ const ProductMutation = {
       }
     },
     resolve: async (parentValue, { input }, { Product }) => {
-      const { id: _id, url, cover, retailPrice, currencyLabel, wholesalePrice } = input;
+      const { id: _id, url, cover, retailPrice, currencyLabel, description, name } = input;
       await Product.findOneAndUpdate(
         { _id },
         {
           $set: {
-            url, cover, retailPrice, currencyLabel, wholesalePrice
+            url, cover, retailPrice, currencyLabel, description, name
           }
         }
       );

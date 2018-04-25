@@ -1,1 +1,1 @@
-import mongoose, { Schema } from 'mongoose';const productSchema = Schema({  url: String,  cover: String,  retailPrice: Number,  currencyLabel: String,  wholesalePrice: Number});export default mongoose.model('Product', productSchema);
+import mongoose, { Schema } from 'mongoose';const productSchema = Schema({  url: String,  cover: String,  retailPrice: Number,  currencyLabel: String,  description: String,  name: String,});export default mongoose.model('Product', productSchema);
