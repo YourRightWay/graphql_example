@@ -1,0 +1,28 @@
+{
+  "plugins": [],
+  "extends": [],
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "max-len": [2, 120],
+    "prefer-const": "off", // object prop reassignments were not being detected by eslint, invalidating this rule
+    "semi": ["error", "always"],
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/href-no-hash": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  }
+}
