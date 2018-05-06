@@ -1,1 +1,1 @@
-console.log(123);const a = 6;
+console.log(123);const a = 6;const b = () => a;b();
